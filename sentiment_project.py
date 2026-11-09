@@ -184,7 +184,7 @@ elif selected == "🎬 Movie Recommendation":
 
     cols = st.columns(5)
 
-for col_no, i in enumerate(indexes[0][1:6]):
+    for col_no, i in enumerate(indexes[0][1:6]):
 
     movie_name = df.loc[i, "name"]
     movie_id = df.loc[i, "movie_id"]
