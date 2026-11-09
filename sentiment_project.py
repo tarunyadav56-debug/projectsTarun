@@ -176,7 +176,7 @@ elif selected == "🎬 Movie Recommendation":
 
     if st.button("Recommend Movies"):
 
-        index = df[df["name"] == watched_movie].index[0]
+    index = df[df["name"] == watched_movie].index[0]
 
     distances, indexes = model.kneighbors(
         vectors[index].toarray()
@@ -192,18 +192,12 @@ elif selected == "🎬 Movie Recommendation":
         with cols[col_no]:
 
             response = requests.get(
-            f"http://www.omdbapi.com/?i={movie_id}&apikey=b84e8a7c"
-        )
-
-        data = response.json()
-
-        if "Poster" in data and data["Poster"] != "N/A":
-            st.image(
-                data["Poster"],
-                use_container_width=True
+                f"http://www.omdbapi.com/?i={movie_id}&apikey=b84e8a7c"
             )
 
-        st.markdown(
-            f"<center><b>{movie_name}</b></center>",
-            unsafe_allow_html=True
-        )
+            data = response.json()
+
+            if "Poster" in data and data["Poster"] != "N/A":
+                st.image(data["Poster"], use_container_width=True)
+
+            st.caption(movie_name)
