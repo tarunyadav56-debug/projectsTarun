@@ -223,6 +223,5 @@ elif selected == "🎬 Movie Recommendation":
                     f"<center><b>{movie_name}</b></center>",
                     unsafe_allow_html=True
                 )
-
-            except Exception:
-        st.write(movie_name)
+                except Exception:
+                st.write(movie_name)
