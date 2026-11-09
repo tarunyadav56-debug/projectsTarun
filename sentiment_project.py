@@ -188,21 +188,21 @@ elif selected == "Movie Recommendation":
 
         for col_no, i in enumerate(indexes[0][1:6]):
 
-            with colsst.write(df.iloc[i]["id"])
+            with cols[col_no]:
 
-                try:
+                st.write(df.iloc[i]["name"])
 
-                    # CHANGE THIS COLUMN AFTER CHECKING df.columns
-                    movie_id = df.iloc[i][0]
+        movie_id = df.iloc[i]["id"]
 
-                    response = requests.get(
-                        f"http://www.omdbapi.com/?i={movie_id}&apikey=7472611b"
-                    )
+        try:
+            response = requests.get(
+                f"http://www.omdbapi.com/?i={movie_id}&apikey=7472611b"
+            )
 
-                    data = response.json()
+            data = response.json()
 
-                    if "Poster" in data and data["Poster"] != "N/A":
-                        st.image(data["Poster"])
+            if "Poster" in data and data["Poster"] != "N/A":
+                st.image(data["Poster"])
 
-                except Exception as e:
-                    st.error(f"Error: {e}")
+        except Exception as e:
+            st.error(e)
