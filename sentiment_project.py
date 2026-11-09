@@ -174,7 +174,7 @@ elif selected == "🎬 Movie Recommendation":
         options=df["name"]
     )
 
-    if st.button("Recommend Movies"):
+if st.button("Recommend Movies"):
 
     index = df[df["name"] == watched_movie].index[0]
 
