@@ -31,19 +31,22 @@ AI & NLP Developer
 """, unsafe_allow_html=True)
 
 selected = option_menu(
-    menu_title="Projects",
-    options=[
-        "Sentiment Analysis",
-        "Spam Detection",
-        "Movie Recommendation"
-    ],
-    icons=[
-        "emoji-smile",
-        "envelope",
-        "film"
-    ],
-    default_index=0
+    menu_title=None,
+    options=["Sentiment", "Spam", "Movies"],
+    icons=["emoji-smile", "envelope", "film"],
+    orientation="horizontal",
+    styles={
+        "container": {"padding": "0!important"},
+        "nav-link": {
+            "font-size": "18px",
+            "text-align": "center",
+        },
+        "nav-link-selected": {
+            "background-color": "#4aaaaa",
+        },
+    }
 )
+
 
 st.sidebar.title("About Us")
 st.sidebar.write(
