@@ -207,29 +207,22 @@ elif selected == "🎬 Movie Recommendation":
             vectors[index].toarray()
         )
 
-        for i in indexes[0][1:6]:
+for i in indexes[0][1:6]:
 
-            movie_name = df.loc[i, "name"]
-            movie_id = df.loc[i, "movie_id"]
+    movie_name = df.loc[i, "name"]
+    movie_id = df.loc[i, "movie_id"]
 
-            st.subheader(movie_name)
+    st.subheader(movie_name)
 
-            try:
+    try:
+        response = requests.get(
+            f"http://www.omdbapi.com/?i={movie_id}&apikey=b84e8a7c"
+        )
 
-                response = requests.get(
-                    f"http://www.omdbapi.com/?i={movie_id}&apikey=b84e8a7c"
-                )
+        data = response.json()
 
-                data = response.json()
+        if "Poster" in data:
+            st.image(data["Poster"], width=300)
 
-                if (
-                    "Poster" in data and
-                    data["Poster"] != "N/A"
-                ):
-                    st.image(
-                        data["Poster"],
-                        width=300
-                    )
-
-            except Exception as e:
-                st.error(f"Error loading poster: {e}")
+    except Exception as e:
+        st.error(e)
