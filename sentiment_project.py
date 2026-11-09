@@ -188,7 +188,7 @@ elif selected == "Movie Recommendation":
 
         for col_no, i in enumerate(indexes[0][1:6]):
 
-            with colsst.write(df.iloc[i]["name"])
+            with colsst.write(df.iloc[i]["id"])
 
                 try:
 
