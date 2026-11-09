@@ -14,16 +14,20 @@ st.set_page_config(
 # =====================================================
 # CUSTOM CSS
 # =====================================================
+st.markdown("""
+<style>
 .banner{
     background: linear-gradient(90deg,#4aaaaa,#000000);
-    padding:12px;
-    border-radius:12px;
+    padding:8px;
+    border-radius:10px;
     text-align:center;
     color:white;
-    font-size:24px;
+    font-size:20px;
     font-weight:bold;
-    margin-bottom:10px;
+    margin-bottom:5px;
 }
+</style>
+""", unsafe_allow_html=True)
 
 # =====================================================
 # HEADER
