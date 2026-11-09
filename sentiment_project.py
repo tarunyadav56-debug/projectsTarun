@@ -188,43 +188,41 @@ elif selected == "🎬 Movie Recommendation":
         options=df["name"]
     )
 
-    if st.button("Recommend Movies"):
+   if st.button("Recommend Movies"):
 
-        index = df[df["name"] == watched_movie].index[0]
+    index = df[df["name"] == watched_movie].index[0]
 
-        distances, indexes = model.kneighbors(
-            vectors[index].toarray()
-        )
+    distances, indexes = model.kneighbors(
+        vectors[index].toarray()
+    )
 
-cols = st.columns(5)
+    cols = st.columns(5)
 
-for col_no, i in enumerate(indexes[0][1:6]):
+    for col_no, i in enumerate(indexes[0][1:6]):
 
-    movie_name = df.loc[i, "name"]
-    movie_id = df.loc[i, "movie_id"]
+        movie_name = df.loc[i, "name"]
+        movie_id = df.loc[i, "movie_id"]
 
-    with cols[col_no]:
-
-        try:
-            response = requests.get(
-                f"http://www.omdbapi.com/?i={movie_id}&apikey=b84e8a7c"
-            )
-
-            data = response.json()
-
-            if (
-                "Poster" in data
-                and data["Poster"] != "N/A"
-            ):
-                st.image(
-                    data["Poster"],
-                    use_container_width=True
+        with colstry:
+                response = requests.get(
+                    f"http://www.omdbapi.com/?i={movie_id}&apikey=b84e8a7c"
                 )
 
-            st.markdown(
-                f"<center><b>{movie_name}</b></center>",
-                unsafe_allow_html=True
-            )
+                data = response.json()
 
-        except Exception:
-            st.write(movie_name)
+                if (
+                    "Poster" in data and
+                    data["Poster"] != "N/A"
+                ):
+                    st.image(
+                        data["Poster"],
+                        use_container_width=True
+                    )
+
+                st.markdown(
+                    f"<center><b>{movie_name}</b></center>",
+                    unsafe_allow_html=True
+                )
+
+            except Exception:
+                st.write(movie_name)
