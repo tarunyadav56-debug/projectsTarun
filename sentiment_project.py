@@ -13,21 +13,7 @@ st.set_page_config(
 
 # =====================================================
 # CUSTOM CSS
-# =====================================================
-st.markdown("""
-<style>
-.banner{
-    background: linear-gradient(90deg,#4aaaaa,#000000);
-    padding:8px;
-    border-radius:10px;
-    text-align:center;
-    color:white;
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:5px;
-}
-</style>
-""", unsafe_allow_html=True)
+
 
 # =====================================================
 # HEADER
@@ -59,7 +45,7 @@ st.sidebar.write(
 )
 
 st.sidebar.title("Contact Us")
-st.sidebar.write("+91 9958966311")
+st.sidebar.write("+91 9717776422")
 
 # =====================================================
 # TOP MENU
