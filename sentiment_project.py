@@ -181,7 +181,7 @@ elif selected == "Movie Recommendation":
 
         st.subheader("Recommended Movies")
 
-       cols = st.columns(5)
+        cols = st.columns(5)
 
 for col_no, i in enumerate(indexes[0][1:6]):
 
