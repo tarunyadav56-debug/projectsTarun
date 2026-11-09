@@ -3,17 +3,17 @@ import joblib
 import requests
 from streamlit_option_menu import option_menu
 
-# ==========================================
+# ==================================================
 # PAGE CONFIG
-# ==========================================
+# ==================================================
 st.set_page_config(
     page_title="NLP Dashboard",
     layout="wide"
 )
 
-# ==========================================
-# HEADER
-# ==========================================
+# ==================================================
+# BANNER
+# ==================================================
 st.markdown("""
 <style>
 .banner {
@@ -33,15 +33,16 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ==========================================
+# ==================================================
 # SIDEBAR
-# ==========================================
+# ==================================================
 st.sidebar.image("flag.jpg", use_container_width=True)
 
 st.sidebar.markdown("""
 <h3 style='text-align:center;color:#4aaaaa;'>
 TARUN YADAV
 </h3>
+
 <p style='text-align:center;'>
 AI & NLP Developer
 </p>
@@ -67,12 +68,12 @@ st.sidebar.write(
     "We are developing ML projects based on NLP in LN AI Academy"
 )
 
-st.sidebar.title("Contact")
-st.sidebar.write("+91 9717776422")
+st.sidebar.title("Contact Us")
+st.sidebar.write("+91 9958966311")
 
-# =====================================================
+# ==================================================
 # SENTIMENT ANALYSIS
-# =====================================================
+# ==================================================
 if selected == "Sentiment Analysis":
 
     model = joblib.load("sentiment_model.pkl")
@@ -94,9 +95,9 @@ if selected == "Sentiment Analysis":
         prob = model.predict_proba([sample_review])
 
         if pred[0] == 0:
-            st.error(f"Negative ({prob[0]:.2f})")
+            st.error(f"Negative ({prob[0].2f})")
         else:
-            st.success(f"Positive ({prob[0]:.2f})")
+            st.success(f"Positive ({prob[0].2f})")
             st.balloons()
 
     user_review = st.text_input("Your Review")
@@ -107,14 +108,14 @@ if selected == "Sentiment Analysis":
         prob = model.predict_proba([user_review])
 
         if pred[0] == 0:
-            st.error(f"Negative ({prob[0]:.2f})")
+            st.error(f"Negative ({prob[0].2f})")
         else:
-            st.success(f"Positive ({prob[0]:.2f})")
+            st.success(f"Positive ({prob[0].2f})")
             st.balloons()
 
-# =====================================================
+# ==================================================
 # SPAM DETECTION
-# =====================================================
+# ==================================================
 elif selected == "Spam Detection":
 
     model = joblib.load("spam_model.pkl")
@@ -136,9 +137,9 @@ elif selected == "Spam Detection":
         prob = model.predict_proba([sample_msg])
 
         if pred[0] == 1:
-            st.error(f"Spam Detected ({prob[0]:.2f})")
+            st.error(f"🚨 Spam Detected ({prob[0].2f})")
         else:
-            st.success(f"No Spam ({prob[0]:.2f})")
+            st.success(f"✅ No Spam ({prob[0].2f})")
             st.snow()
 
     user_msg = st.text_input("Enter Message")
@@ -149,14 +150,14 @@ elif selected == "Spam Detection":
         prob = model.predict_proba([user_msg])
 
         if pred[0] == 1:
-            st.error(f"Spam Detected ({prob[0]:.2f})")
+            st.error(f"🚨 Spam Detected ({prob[0].2f})")
         else:
-            st.success(f"No Spam ({prob[0]:.2f})")
+            st.success(f"✅ No Spam ({prob[0].2f})")
             st.snow()
 
-# =====================================================
+# ==================================================
 # MOVIE RECOMMENDATION
-# =====================================================
+# ==================================================
 elif selected == "Movie Recommendation":
 
     model = joblib.load("model.pkl")
@@ -166,7 +167,7 @@ elif selected == "Movie Recommendation":
     st.header("🎬 Movie Recommendation System")
 
     watched_movie = st.selectbox(
-        "Select Movie",
+        "Select Watched Movie",
         options=df["name"]
     )
 
@@ -180,29 +181,27 @@ elif selected == "Movie Recommendation":
 
         st.subheader("Recommended Movies")
 
-        # DEBUG
-        st.write("DataFrame Columns:")
-        st.write(df.columns)
-
         cols = st.columns(5)
 
         for col_no, i in enumerate(indexes[0][1:6]):
 
-            with cols[col_no]:
+            with colsmovie_name = df.loc[i, "name"]
+                movie_id = df.loc[i, "movie_id"]
 
-                st.write(df.loc[i].values[1])
+                st.write(movie_name)
 
-            movie_id = df.loc[i].values[0]
+                try:
+                    response = requests.get(
+                        f"http://www.omdbapi.com/?i={movie_id}&apikey=b84e8a7c"
+                    )
 
-        try:
-            response = requests.get(
-                f"http://www.omdbapi.com/?i={movie_id}&apikey=7472611b"
-            )
+                    data = response.json()
 
-            data = response.json()
+                    if "Poster" in data and data["Poster"] != "N/A":
+                        st.image(
+                            data["Poster"],
+                            use_container_width=True
+                        )
 
-            if "Poster" in data and data["Poster"] != "N/A":
-                st.image(data["Poster"], width=250)
-
-        except Exception as e:
-            st.error(e)
+                except Exception as e:
+                    st.error(f"Poster Error: {e}")
