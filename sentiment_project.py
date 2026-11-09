@@ -149,11 +149,11 @@ elif selected == "Movie Recommendation":
 
         for col_no, i in enumerate(indexes[0][1:6]):
 
-            with cols[col_no]:
+    with cols[col_no]:
 
-                st.write(df.iloc[i]["name"])
+        st.write(df.iloc[i]["name"])
 
-                   movie_id = df.loc[i, 'movie_id']
+        movie_id = df.iloc[i][0]
 
                 try:
                     response = requests.get(
