@@ -27,22 +27,6 @@ st.markdown("""
     margin-bottom: 25px;
 }
 </style>
-st.markdown("""
-<style>
-
-/* Remove top padding */
-.block-container {
-    padding-top: 0rem;
-    padding-bottom: 0rem;
-}
-
-/* Remove extra header gap */
-[data-testid="stHeader"] {
-    height: 0rem;
-}
-
-</style>
-""", unsafe_allow_html=True)
 <div class="banner">
     NLP & ML Projects Dashboard
 </div>
