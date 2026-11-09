@@ -190,7 +190,7 @@ elif selected == "Movie Recommendation":
 
             with cols[col_no]:
 
-            st.write(df.loc[i].values[1])
+                st.write(df.loc[i].values[1])
 
             movie_id = df.loc[i].values[0]
 
