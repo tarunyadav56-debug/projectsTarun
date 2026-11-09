@@ -16,27 +16,16 @@ st.set_page_config(
 # =====================================================
 st.markdown("""
 <style>
-
-.block-container{
-    padding-top:0rem;
-    padding-bottom:1rem;
-}
-
-[data-testid="stHeader"]{
-    height:0rem;
-}
-
 .banner{
     background: linear-gradient(90deg,#4aaaaa,#000000);
-    padding:25px;
-    border-radius:12px;
+    padding:35px;
+    border-radius:15px;
     text-align:center;
     color:white;
-    font-size:35px;
+    font-size:32px;
     font-weight:bold;
-    margin-bottom:20px;
+    line-height:1.2;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
