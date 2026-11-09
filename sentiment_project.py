@@ -149,9 +149,9 @@ elif selected == "Spam Detection":
         prob = model.predict_proba([user_msg])
 
         if pred[0] == 1:
-            st.error(f"Spam Detected ({prob[0].2f})")
+            st.error(f"Spam Detected ({prob[0]:.2f})")
         else:
-            st.success(f"No Spam ({prob[0].2f})")
+            st.success(f"No Spam ({prob[0]:.2f})")
             st.snow()
 
 # =====================================================
