@@ -225,4 +225,4 @@ elif selected == "🎬 Movie Recommendation":
                 )
 
             except Exception:
-                st.write(movie_name)
+        st.write(movie_name)
