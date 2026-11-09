@@ -14,23 +14,6 @@ st.set_page_config(
 # ==================================================
 # BANNER
 # ==================================================
-st.markdown("""
-<style>
-.banner {
-    background: linear-gradient(90deg, #4aaaaa, #000000);
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-    color: white;
-    font-size: 35px;
-    font-weight: bold;
-    margin-bottom: 25px;
-}
-</style>
-<div class="banner">
-    NLP & ML Projects Dashboard
-</div>
-""", unsafe_allow_html=True)
 
 # ==================================================
 # SIDEBAR
