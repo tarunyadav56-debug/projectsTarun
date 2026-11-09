@@ -190,9 +190,9 @@ elif selected == "Movie Recommendation":
 
             with cols[col_no]:
 
-                st.write(df.iloc[i]["name"])
+            st.write(df.loc[i].values[1])
 
-        movie_id = df.iloc[i]["id"]
+            movie_id = df.loc[i].values[0]
 
         try:
             response = requests.get(
@@ -202,7 +202,7 @@ elif selected == "Movie Recommendation":
             data = response.json()
 
             if "Poster" in data and data["Poster"] != "N/A":
-                st.image(data["Poster"])
+                st.image(data["Poster"], width=250)
 
         except Exception as e:
             st.error(e)
