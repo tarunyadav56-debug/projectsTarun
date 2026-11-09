@@ -207,22 +207,35 @@ elif selected == "🎬 Movie Recommendation":
             vectors[index].toarray()
         )
 
-for i in indexes[0][1:6]:
+cols = st.columns(5)
+
+for col_no, i in enumerate(indexes[0][1:6]):
 
     movie_name = df.loc[i, "name"]
     movie_id = df.loc[i, "movie_id"]
 
-    st.subheader(movie_name)
+    with cols[col_no]:
 
-    try:
-        response = requests.get(
-            f"http://www.omdbapi.com/?i={movie_id}&apikey=b84e8a7c"
-        )
+        try:
+            response = requests.get(
+                f"http://www.omdbapi.com/?i={movie_id}&apikey=b84e8a7c"
+            )
 
-        data = response.json()
+            data = response.json()
 
-        if "Poster" in data:
-            st.image(data["Poster"], width=300)
+            if (
+                "Poster" in data
+                and data["Poster"] != "N/A"
+            ):
+                st.image(
+                    data["Poster"],
+                    use_container_width=True
+                )
 
-    except Exception as e:
-        st.error(e)
+            st.markdown(
+                f"<center><b>{movie_name}</b></center>",
+                unsafe_allow_html=True
+            )
+
+        except Exception:
+            st.write(movie_name)
