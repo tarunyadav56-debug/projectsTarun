@@ -186,12 +186,12 @@ elif selected == "🎬 Movie Recommendation":
 
     for col_no, i in enumerate(indexes[0][1:6]):
 
-    movie_name = df.loc[i, "name"]
-    movie_id = df.loc[i, "movie_id"]
+        movie_name = df.loc[i, "name"]
+        movie_id = df.loc[i, "movie_id"]
 
-    with cols[col_no]:
+        with cols[col_no]:
 
-        response = requests.get(
+            response = requests.get(
             f"http://www.omdbapi.com/?i={movie_id}&apikey=b84e8a7c"
         )
 
