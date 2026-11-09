@@ -153,7 +153,7 @@ elif selected == "Movie Recommendation":
 
                 st.write(df.iloc[i]["name"])
 
-               st.write(df.columns)
+               movie_id = df.loc[i, 'movie_id']
 
                 try:
                     response = requests.get(
