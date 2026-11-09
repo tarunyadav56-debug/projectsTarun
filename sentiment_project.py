@@ -181,11 +181,13 @@ elif selected == "Movie Recommendation":
 
         st.subheader("Recommended Movies")
 
-        cols = st.columns(5)
+       cols = st.columns(5)
 
 for col_no, i in enumerate(indexes[0][1:6]):
 
-    with colsmovie_name = df.loc[i, "name"]
+    with cols[col_no]:
+
+        movie_name = df.loc[i, "name"]
         movie_id = df.loc[i, "movie_id"]
 
         st.write(movie_name)
@@ -198,10 +200,7 @@ for col_no, i in enumerate(indexes[0][1:6]):
             data = response.json()
 
             if "Poster" in data and data["Poster"] != "N/A":
-                st.image(
-                    data["Poster"],
-                    use_container_width=True
-                )
+                st.image(data["Poster"], use_container_width=True)
 
         except Exception as e:
             st.write(f"Error: {e}")
